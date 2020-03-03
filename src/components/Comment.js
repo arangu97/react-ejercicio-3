@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row} from 'react-bootstrap';
+import {Row, Col, } from 'react-bootstrap';
 
 import './Comment.css'
 
@@ -7,15 +7,22 @@ class Comment extends React.Component {
 
     render() {
         return(
-            <article className="Comment" onClick={this.props.clicked} style={{border: 2, borderColor: '#000000'}}>
+            <article className="Comment">
                 <Row>
-                    <h1>{this.props.title}</h1>
+                    <Col>
+                        <h1>{this.props.title}</h1>
+                    </Col>
+                    <Col>
+                        <button type="button" className="float-right btn btn-danger" onClick={this.props.clicked}>
+                            DELETE
+                        </button>
+                    </Col>
                 </Row>
                 <Row>
-                    <div className="Author">{this.props.author}</div>
+                    <div className="Author"><h4>{this.props.author}</h4></div>
                 </Row>
                 <Row>
-                    <p>{this.props.commentText}</p>
+                    <p className="Body">{this.props.commentText}</p>
                 </Row>
             </article>
         )

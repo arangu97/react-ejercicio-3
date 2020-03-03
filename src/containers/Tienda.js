@@ -51,15 +51,7 @@ class Tienda extends React.Component {
 
 
     deleteCommentHandler = (id) => {
-        console.log(id)
-        const url = 'https://dsm-project-aranguren.firebaseio.com/comments/' + id;
-        console.log(url)
-        fetch(url,{
-            method: 'DELETE'
-        }).then(res => {
-            console.log(res)
-        }
-        )
+        axios.delete(`/comments/${id}.json`)
     }
 
     render() {
@@ -96,7 +88,7 @@ class Tienda extends React.Component {
                 <Row style={{padding: 45}}>
                     {products}
                 </Row>
-                <Row>
+                <Row className="text-center">
                     <h2>Insert a new comment or rate our products!</h2>
                 </Row>
                 <NewComment lastIndex={this.state.lastIndex}/>

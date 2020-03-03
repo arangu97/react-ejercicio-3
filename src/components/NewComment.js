@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from '../axios';
-import {Row} from 'react-bootstrap'
 
 class NewComment extends React.Component {
     state = {
@@ -15,22 +14,12 @@ class NewComment extends React.Component {
             comment: this.state.comment,
             author: this.state.author
         };
-        const url = 'https://dsm-project-aranguren.firebaseio.com/comments.json';
-        fetch(url,{
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => {
-            console.log(res)
-        }
-        )
+        axios.post('/comments.json', data)
     }
 
     render () {
         return (
-            <div>
+            <div style={{paddingBottom: 20}}>
                 <form>
                 <div className="form-group" style={{padding : 10}}>
                     <label htmlFor="exampleInputTitle">Title</label>
