@@ -27,7 +27,6 @@ class Tienda extends React.Component {
                     });
                     this.setState({ lastIndex : key })
                 }
-                comments = comments.slice(0, 4);
                 this.setState({ comments: comments });
             }).catch(error => {
                 this.setState({ error: true });
@@ -42,7 +41,6 @@ class Tienda extends React.Component {
                         idb: key
                     });
                 }
-                products = products.slice(0, 4);
                 this.setState({ products: products });
             }).catch(error => {
                 this.setState({ error: true });
@@ -51,7 +49,9 @@ class Tienda extends React.Component {
 
 
     deleteCommentHandler = (id) => {
-        axios.delete(`/comments/${id}.json`)
+        axios.delete(`/comments/${id}.json`).then(() => {
+            window.location.reload()
+        })
     }
 
     render() {

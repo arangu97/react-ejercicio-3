@@ -8,13 +8,16 @@ class NewComment extends React.Component {
         author: ''
     }
 
-    postDataHandler = () => {
+    postDataHandler = async() => {
         const data = {
             title: this.state.title,
             comment: this.state.comment,
             author: this.state.author
         };
-        axios.post('/comments.json', data)
+     axios.post('/comments.json', data).then(() => {
+            window.location.reload()
+            }
+        )
     }
 
     render () {
@@ -34,7 +37,7 @@ class NewComment extends React.Component {
                     <input type="text" className="form-control" value={this.state.author} id="exampleInputAuthor"  placeholder="Enter author" onChange={(event) => this.setState({author: event.target.value})} />
                 </div>
                 </form>
-                <button onClick={this.postDataHandler}>Add Post</button>         
+                <button className="btn btn-success" onClick={this.postDataHandler}>Add Post</button>         
             </div>   
         );
     }
